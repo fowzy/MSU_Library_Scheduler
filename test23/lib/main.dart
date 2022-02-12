@@ -151,11 +151,20 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                child: FlatButton(
-                  color: Color(0xff862633),
-                  textColor: Colors.white, // foreground
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Color(0xff862633),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  child: Text(
+                    'Next',
+                    style: TextStyle(fontSize: 24),
+                  ),
                   onPressed: () {
-                    if (emailIsValid(emailController.text) && validateMnumber(mNumberController.text)) {
+                    if (emailIsValid(emailController.text) &&
+                        validateMnumber(mNumberController.text)) {
                       print("is valid");
                     } else {
                       showDialog<String>(
@@ -173,7 +182,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                     }
                   },
-                  child: Text('Enter'),
                 ),
               ),
             ],
