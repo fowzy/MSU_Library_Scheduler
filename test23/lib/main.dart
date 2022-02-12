@@ -1,17 +1,42 @@
 import 'package:flutter/material.dart';
 
-// TODO: Put a spacer before each widget
-// TODO: Use "regex" to validate the email and student id number and put the logic
-// TODO: Build "Error" Page with <button> "Try Again" or "Go Back"
-// TODO: Expand widget to make sure the app will fits all screen
-// TODO: for Styling choose the color of MSU branding #862633
-// Background white and button and bar has to be MSU color
 void main() {
   runApp(const MyApp());
 }
 
+bool isNumeric(String s) {
+  if (s == null) {
+    return false;
+  }
+  return double.tryParse(s) != null;
+}
+
+validateMnumber(String Mnumber) {
+  if (Mnumber.length != 9) {
+    return false;
+  }
+
+  if (Mnumber[0].toUpperCase() != "M") {
+    return false;
+  }
+
+  for (var i = 1; i < Mnumber.length; i++) {
+    if (!isNumeric(Mnumber[i])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+emailIsValid(String str) {
+  final email_validation = RegExp(r'^[\w-.]+@([\w-]+.)+[\w-]{2,4}$');
+  return email_validation.hasMatch(str);
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,55 +79,105 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool validMID = false;
   bool validEmail = false;
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController mNumberController = new TextEditingController();
   // our logic right here and function should be before override
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.red,
-          title: Row(children: <Widget>[
-            Image(
-              height: 30,
-              image: NetworkImage(
-                  'https://msumustangs.com/images/logos/site/site.png'),
-            ),
+          backgroundColor: Color(0xff862633),
+          title: Column(children: <Widget>[
+            // Image(
+            //   height: 30,
+            //   image: NetworkImage(
+            //       'https://msumustangs.com/images/logos/site/site.png'),
+            // ),
             Text('MSU Study Room'),
           ])),
       body: Container(
-        padding: new EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Please enter a valid student email:',
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'example@my.msutexas.edu',
+        // padding: new EdgeInsets.all(350.0),
+        child: Transform.scale(
+          scale: 0.90,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Please enter a valid student email:',
               ),
-            ),
-            Text('Please enter your M#:'),
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'M12345678',
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                child: TextFormField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide:
+                            BorderSide(color: Color(0xfffed322), width: 1.2)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide:
+                            BorderSide(color: Color(0xff862633), width: 1.2)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide:
+                            BorderSide(color: Color(0xff862633), width: 1.2)),
+                    hintText: 'example@my.msutexas.edu',
+                  ),
+                ),
               ),
-            ),
-            FlatButton(
-              color: Colors.red,
-              textColor: Colors.white, // foreground
-              onPressed: () {
-                // once the user click the button
-                // run the check function using regex
-                // if both are valid switch boolen to true
-                // validMID & validEmail == true then go to
-                // confirm.dart
-                // else go to error.dart
-              },
-              child: Text('Enter'),
-            ),
-          ],
+              Text('Please enter your M#:'),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                child: TextFormField(
+                  controller: mNumberController,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide:
+                            BorderSide(color: Color(0xfffed322), width: 1.2)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide:
+                            BorderSide(color: Color(0xff862633), width: 1.2)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide:
+                            BorderSide(color: Color(0xff862633), width: 1.2)),
+                    hintText: 'M12345678',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                child: FlatButton(
+                  color: Color(0xff862633),
+                  textColor: Colors.white, // foreground
+                  onPressed: () {
+                    if (emailIsValid(emailController.text) && validateMnumber(mNumberController.text)) {
+                      print("is valid");
+                    } else {
+                      showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('Alert'),
+                          content: const Text('Please enter valid email'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Ok'),
+                              child: const Text('Ok'),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                  },
+                  child: Text('Enter'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
