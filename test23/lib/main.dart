@@ -78,8 +78,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool validMID = false;
-  bool validEmail = false;
   TextEditingController emailController = new TextEditingController();
   TextEditingController mNumberController = new TextEditingController();
   // our logic right here and function should be before override
