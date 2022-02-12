@@ -89,16 +89,24 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Color(0xff862633),
-          title: Column(children: <Widget>[
-            // Image(
-            //   height: 30,
-            //   image: NetworkImage(
-            //       'https://msumustangs.com/images/logos/site/site.png'),
-            // ),
-            Text('MSU Study Room'),
-          ])),
-      body: Container(
-        // padding: new EdgeInsets.all(350.0),
+          title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(
+                  'assets/logo.png',
+                  height: 50,
+                  width: 50,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  'MSU Study Room',
+                  style: TextStyle(fontSize: 22),
+                ),
+              ])),
+      body: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
         child: Transform.scale(
           scale: 0.90,
           child: Column(

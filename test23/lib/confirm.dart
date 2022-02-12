@@ -28,22 +28,8 @@ class Confirmation extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Column(
             children: <Widget>[
-              Text("Test"),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: Color(0xff862633),
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
-                child: Text(
-                  'Go Back',
-                  style: TextStyle(fontSize: 24),
-                ),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Booking()));
-                },
-              ),
+              Text(
+                  "Your booked, library should have your key ready.\nPlease show up 10 minutes ealier.\nNOTE: If the student didn't show up on time the booking will be cancel automatically."),
             ],
           ),
         ),
