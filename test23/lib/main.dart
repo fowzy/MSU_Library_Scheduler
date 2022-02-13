@@ -31,7 +31,7 @@ validateMnumber(String Mnumber) {
 }
 
 emailIsValid(String str) {
-  final email_validation = RegExp(r'^[\w-.]+@([\w-]+.)+[\w-]{2,4}$');
+  final email_validation = RegExp(r'^[\w-.]+@(my.msutexas.edu)+[\w-]{2,4}$');
   return email_validation.hasMatch(str);
 }
 
@@ -153,26 +153,28 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(fontSize: 24),
                       ),
                       onPressed: () {
-                        // if (emailIsValid(emailController.text) &&
-                        //     validateMnumber(mNumberController.text)) {
-                        print("is valid");
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Booking()));
-                        // } else {
-                        //   showDialog<String>(
-                        //     context: context,
-                        //     builder: (BuildContext context) => AlertDialog(
-                        //       title: const Text('Alert'),
-                        //       content: const Text('Please enter valid email'),
-                        //       actions: <Widget>[
-                        //         TextButton(
-                        //           onPressed: () => Navigator.pop(context, 'Ok'),
-                        //           child: const Text('Ok'),
-                        //         ),
-                        //       ],
-                        //     ),
-                        //   );
-                        // }
+                        if (emailIsValid(emailController.text) &&
+                            validateMnumber(mNumberController.text)) {
+                          print("is valid");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Booking()));
+                        } else {
+                          showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text('Alert'),
+                              content: const Text('Please enter valid email'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'Ok'),
+                                  child: const Text('Ok'),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
                       },
                     ),
                   ),
