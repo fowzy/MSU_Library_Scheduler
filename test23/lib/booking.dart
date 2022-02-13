@@ -105,7 +105,21 @@ class _BookingState extends State<Booking> {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
-              backgroundColor: Color(0xff862633), title: Text("Booking Page")),
+              backgroundColor: Color(0xff862633),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/logo.png',
+                    height: 50,
+                    width: 50,
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text("Booking Page"),
+                ],
+              )),
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
