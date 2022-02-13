@@ -13,4 +13,4 @@ A mobile app that will make 'Midwestern State University Texas' students schedul
 |   1   | [README.md](README.md)         | README file.      |
 |   1   | [/test23](/test23)         | Project files      |
 ## Screenshots
-    <img src="Screenshot.png">
+<img src="Screenshot.png">
