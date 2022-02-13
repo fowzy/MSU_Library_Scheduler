@@ -177,9 +177,9 @@ class _BookingState extends State<Booking> {
                       showDialog<String>(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
-                          title: const Text('Alert'),
-                          content:
-                              const Text('Your booking has been confirmed.'),
+                          title: const Text('Thank you!'),
+                          content: const Text(
+                              'Your booking has been sent to the library.\nConfirmation will be sent to your email.'),
                           actions: <Widget>[
                             TextButton(
                               onPressed: () => Navigator.pop(context, 'Ok'),

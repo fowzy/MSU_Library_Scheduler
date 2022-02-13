@@ -31,7 +31,7 @@ validateMnumber(String Mnumber) {
 }
 
 emailIsValid(String str) {
-  final email_validation = RegExp(r'^[\w-.]+@(my.msutexas.edu)+[\w-]{2,4}$');
+  final email_validation = RegExp(r'^[\w-.]+@(my.msutexas.edu)');
   return email_validation.hasMatch(str);
 }
 
