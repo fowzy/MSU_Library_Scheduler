@@ -65,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
           backgroundColor: Color(0xff862633),
           title: Row(
@@ -85,6 +86,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ])),
       body: Column(
         children: [
+          SizedBox(
+            height: 20,
+          ),
           Text('Number of student:'),
           SingleChildScrollView(
             physics: ClampingScrollPhysics(),

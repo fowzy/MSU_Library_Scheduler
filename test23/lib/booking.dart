@@ -10,7 +10,6 @@
 // Once the user choose the time then user go to confirmation page
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:test23/main.dart';
 import 'package:enough_mail/enough_mail.dart';
 
@@ -194,14 +193,7 @@ class _BookingState extends State<Booking> {
                 ),
               ],
             ),
-          )
-          //   BookingCalendar(
-          //   bookingService: mockBookingService,
-          //   convertStreamResultToDateTimeRanges: convertStreamResultMock,
-          //   getBookingStream: getBookingStreamMock,
-          //   uploadBooking: uploadBookingMock,
-          // ),
-          ),
+          )),
     );
   }
 }
